@@ -1,0 +1,41 @@
+= Gistr
+
+A simple tool to post gists to tumblr.
+
+
+== The Problem
+
+Tumblr does not have a way to post code snippets simply and the current solutions are lacking.
+
+
+== CSS changes
+
+To make everything pretty, I have added the following CSS rules to my tumblr
+
+  .gist {
+      line-height: 1.1em;
+      color: #ffffff;
+  }
+
+  .gist .gist-file {
+      border: 0;
+  }
+
+  .gist .gist-file .gist-data {
+      background-color: transparent;
+  }
+
+  .gist .gist-file .gist-data .gist-highlight {
+      font-family:'Bitstream Vera Sans Mono','Courier',monospace;
+      padding-bottom: 0.5em;
+  }
+
+  .gist .gist-file .gist-meta {
+      margin-top: 0.5em;
+  }
+
+
+As well as adding the following to the tumblr template
+
+  <link rel="stylesheet" href="http://gist.github.com/stylesheets/gist/embed.css"/>
+  
