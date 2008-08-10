@@ -1,0 +1,7 @@
+--- 
+:author: Eric Lindvall
+:dependencies: 
+- hpricot
+- activesupport
+:name: gistr
+:email: eric@5stops.com

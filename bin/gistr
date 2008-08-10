@@ -1,0 +1,33 @@
+#!/usr/bin/env ruby
+
+require File.expand_path(File.dirname(__FILE__) + '/../lib/gistr')
+
+require 'optparse'
+require 'ostruct'
+
+opts = OpenStruct.new(:private => 1)
+
+op = OptionParser.new do |o|
+  o.on "-e", "--email=EMAIL", "Tumblr email address" do |email|
+    opts.email = email
+  end
+
+  o.on "-p", "--password=PASSWORD", "Tumblr password" do |password|
+    opts.password = password
+  end
+
+  o.on "-t", "--title=TITLE", "Tumblr post title" do |title|
+  end
+end
+
+gist_id = *op.parse!(ARGV)
+     
+unless gist_id
+  puts op
+  exit(1)
+end
+
+g = Gistr.new(gist_id)
+
+g.post opts.email, opts.password, opts.title
+
