@@ -37,5 +37,5 @@ To make everything pretty, I have added the following CSS rules to my tumblr
 
 As well as adding the following to the tumblr template
 
-  <link rel="stylesheet" href="http://gist.github.com/stylesheets/gist/embed.css"/>
+  &lt;link rel="stylesheet" href="http://gist.github.com/stylesheets/gist/embed.css"/>
   
