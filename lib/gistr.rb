@@ -32,8 +32,7 @@ class Gistr
     Net::HTTP.start("www.tumblr.com") do |http|
       req = Net::HTTP::Post.new "/api/write"
       req.set_form_data :email => email, :password => password,
-	:title => title, :body => body,
-	:private => 1
+        :title => title, :body => body
 
       http.request req
     end
