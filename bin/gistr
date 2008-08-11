@@ -5,7 +5,7 @@ require File.expand_path(File.dirname(__FILE__) + '/../lib/gistr')
 require 'optparse'
 require 'ostruct'
 
-opts = OpenStruct.new(:private => 1)
+opts = OpenStruct.new
 
 op = OptionParser.new do |o|
   o.on "-e", "--email=EMAIL", "Tumblr email address" do |email|

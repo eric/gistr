@@ -13,29 +13,15 @@ Tumblr does not have a way to post code snippets simply and the current solution
 To make everything pretty, I have added the following CSS rules to my tumblr
 
   .gist {
-      line-height: 1.1em;
-      color: #ffffff;
+      line-height: 1.3em !important;
+      color: #ffffff !important;
   }
 
   .gist .gist-file {
-      border: 0;
+      border: 0 !important;
   }
 
   .gist .gist-file .gist-data {
-      background-color: transparent;
+      background-color: transparent !important;
+      padding-bottom: 1em;
   }
-
-  .gist .gist-file .gist-data .gist-highlight {
-      font-family:'Bitstream Vera Sans Mono','Courier',monospace;
-      padding-bottom: 0.5em;
-  }
-
-  .gist .gist-file .gist-meta {
-      margin-top: 0.5em;
-  }
-
-
-As well as adding the following to the tumblr template
-
-  &lt;link rel="stylesheet" href="http://gist.github.com/stylesheets/gist/embed.css"/>
-  

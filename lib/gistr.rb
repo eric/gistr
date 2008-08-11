@@ -1,6 +1,4 @@
-
 require 'open-uri'
-require 'activesupport'
 require 'hpricot'
 
 class Gistr
@@ -15,17 +13,15 @@ class Gistr
   def gist_code
     return @gist_code if @gist_code
 
-    js = open("http://gist.github.com/#{@gist_id}.js").read
-    
-    # Unescape the js into HTML
-    code = js.scan(/document.write\('([^']*)'/).flatten.last.gsub("\\\n", "\n")
+    # Use the secret .pibb format
+    code = open("http://gist.github.com/#{@gist_id}.pibb").read
 
-    h = Hpricot(code)
-
-    # Remove the <pre> tag.
+    # Remove the <pre> tag
     #
     # Tumblr wrap lines at of HTML at times and having the additional 
     # whitespace in a <pre> is very undesirable.
+    h = Hpricot(code)
+
     h.search('pre').each do |pre|
       pre.swap(pre.inner_html)
     end
@@ -35,10 +31,13 @@ class Gistr
 
   private
   def post_to_tumblr(email, password, title, body)
+    post_private = post_private ? 1 : 0
+
     Net::HTTP.start("www.tumblr.com") do |http|
       req = Net::HTTP::Post.new("/api/write")
       req.set_form_data :email => email, :password => password,
-        :title => title, :body => body, :format => 'html'
+        :title => title, :body => body, :format => 'html',
+        :private => post_private
 
       http.request(req)
     end
