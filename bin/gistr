@@ -17,11 +17,16 @@ op = OptionParser.new do |o|
   end
 
   o.on "-t", "--title=TITLE", "Tumblr post title" do |title|
+    opts.title = title
+  end
+
+  o.on "-b", "--blog=BLOG", "Tumblr blog" do |blog|
+    opts.blog = blog
   end
 end
 
 gist_id = *op.parse!(ARGV)
-     
+
 unless gist_id
   puts op
   exit(1)
@@ -29,5 +34,5 @@ end
 
 g = Gistr.new(gist_id)
 
-g.post opts.email, opts.password, opts.title
+g.post opts.email, opts.password, opts.title, opts.blog
 

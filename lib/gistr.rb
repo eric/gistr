@@ -6,8 +6,8 @@ class Gistr
     @gist_id = gist_id
   end
 
-  def post(email, password, title)
-    post_to_tumblr(email, password, title, gist_code)
+  def post(email, password, title, blog)
+    post_to_tumblr(email, password, title, blog, gist_code)
   end
 
   def gist_code
@@ -18,7 +18,7 @@ class Gistr
 
     # Remove the <pre> tag
     #
-    # Tumblr wrap lines at of HTML at times and having the additional 
+    # Tumblr wrap lines at of HTML at times and having the additional
     # whitespace in a <pre> is very undesirable.
     h = Hpricot(code)
 
@@ -30,14 +30,13 @@ class Gistr
   end
 
   private
-  def post_to_tumblr(email, password, title, body)
-    post_private = post_private ? 1 : 0
-
+  def post_to_tumblr(email, password, title, blog, body)
+    post_private = 1
     Net::HTTP.start("www.tumblr.com") do |http|
       req = Net::HTTP::Post.new("/api/write")
       req.set_form_data :email => email, :password => password,
         :title => title, :body => body, :format => 'html',
-        :private => post_private
+        :private => post_private, :group => blog
 
       http.request(req)
     end
