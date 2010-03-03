@@ -23,7 +23,7 @@ class Gistr
     h = Hpricot(code)
 
     h.search('pre').each do |pre|
-      pre.swap(pre.inner_html)
+      pre.swap(pre.inner_html) if pre.inner_html.length > 0
     end
 
     @gist_code = h.to_html
