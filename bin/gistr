@@ -23,6 +23,10 @@ op = OptionParser.new do |o|
   o.on "-b", "--blog=BLOG", "Tumblr blog" do |blog|
     opts.blog = blog
   end
+
+  o.on "-r", "--private=1", "Private post?" do |private|
+    opts.private = private
+  end
 end
 
 gist_id = *op.parse!(ARGV)
@@ -32,7 +36,7 @@ unless gist_id
   exit(1)
 end
 
-g = Gistr.new(gist_id)
+g = Gistr.new(gist_id, { :private => opts.private })
 
 g.post opts.email, opts.password, opts.title, opts.blog
 
